@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jing Wang | Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif;}
+body {
+  background: linear-gradient(135deg,#f0f4f8,#e2e8f0);
+  color:#1f2937;
+  line-height:1.6;
+  scroll-behavior:smooth;
+  background-image: radial-gradient(circle, rgba(200,200,200,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+header {
+  display:flex; justify-content:space-between; align-items:center; padding:20px 40px; background:white;
+  box-shadow:0 2px 10px rgba(0,0,0,0.05); position:sticky; top:0; z-index:1000;
+}
+nav a {margin-left:20px; text-decoration:none; color:#374151; font-weight:500; transition:0.3s;}
+nav a:hover {color:#4f46e5;}
+.btn {padding:10px 20px; border-radius:25px; border:none; cursor:pointer; font-weight:600; transition:0.3s;}
+.btn-primary {background:#4f46e5; color:white;}
+.btn-primary:hover {background:#4338ca;}
+.btn-outline {background:transparent; border:2px solid #4f46e5; color:#4f46e5;}
+.btn-outline:hover {background:#4f46e5; color:white;}
+.hero {padding:100px 20px; background: linear-gradient(135deg,#4f46e5,#3b82f6); color:white; position:relative; overflow:hidden;}
+.hero-container {display:flex; align-items:center; justify-content:center; gap:50px; flex-wrap:wrap;}
+.hero-text {max-width:500px; text-align:left; opacity:0; transform:translateY(20px); animation: fadeInUp 1s forwards;}
+.hero-text h1 {font-size:48px; margin-bottom:10px;}
+.hero-text p {margin-bottom:30px;}
+.hero-image img {width:200px; height:200px; object-fit:cover; border-radius:50%; border:4px solid white; box-shadow:0 10px 20px rgba(0,0,0,0.2);}
+@keyframes fadeInUp {to {opacity:1; transform:translateY(0);}}
+.section {padding:80px 20px; max-width:1100px; margin:auto;}
+.section h2 {text-align:center; margin-bottom:50px; font-size:32px; color:#111827;}
+.grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px;}
+.card {background:white; padding:30px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s; position:relative; overflow:hidden; text-decoration:none; color:inherit;}
+.card:hover {transform:translateY(-5px) scale(1.03); box-shadow:0 15px 30px rgba(0,0,0,0.1); border:2px solid #4f46e5;}
+.card img {width:100%; border-radius:15px; display:block;}
+.overlay {position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(17,24,39,0.8);
+  color:white; display:flex; align-items:center; justify-content:center; text-align:center; opacity:0; transition:opacity 0.3s ease; border-radius:20px; padding:20px;}
+.card:hover .overlay {opacity:1;}
+.about {text-align:center; max-width:700px; margin:auto; color:#374151;}
+.contact {text-align:center;}
+.contact form {display:flex; flex-direction:column; max-width:400px; margin:auto; gap:15px;}
+.contact input, .contact textarea {padding:10px; border:1px solid #d1d5db; border-radius:10px; width:100%;}
+.contact button {width:fit-content; align-self:center;}
+.filter-buttons {text-align:center; margin-bottom:30px;}
+.filter-buttons button {margin:0 10px 10px 0;}
+.skills-container {max-width:800px; margin:auto;}
+.skill {margin-bottom:20px;}
+.skill-name {font-weight:600; margin-bottom:5px;}
+.skill-bar {width:100%; background:#e5e7eb; border-radius:15px; overflow:hidden; height:20px;}
+.skill-fill {height:100%; text-align:right; padding-right:10px; color:white; line-height:20px; 
+  background: linear-gradient(90deg,#6d28d9,#9333ea); width:0; transition: width 1.5s;}
+.certifications, .tools {text-align:center;}
+.tools img {width:60px; margin:10px; vertical-align:middle;}
+footer {text-align:center; padding:20px; background:white; border-top:1px solid #e5e7eb; color:#6b7280; font-size:14px;}
+footer a {margin:0 10px; color:#4f46e5; transition:0.3s;}
+footer a:hover {color:#4338ca;}
+.back-to-top {position:fixed; bottom:20px; right:20px; background:#4f46e5; color:white; border:none; border-radius:50%; padding:12px; cursor:pointer; box-shadow:0 5px 15px rgba(0,0,0,0.2);}
+@media(max-width:768px){.hero-text h1{font-size:36px;} header{flex-direction:column; gap:10px;} .hero-container{flex-direction:column; text-align:center;} .hero-text{text-align:center;}}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Jing Wang</h1>
+<nav>
+<a href="#about">About</a>
+<a href="#services">Services</a>
+<a href="#projects">Projects</a>
+<a href="#skills">Skills</a>
+<a href="#certifications">Certifications</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-text">
+      <h1>Hi, I'm Jing Wang</h1>
+      <p>Data Analyst | Turning data into actionable insights</p>
+      <button class="btn btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View My Work</button>
+      <button class="btn btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Me</button>
+    </div>
+    <div class="hero-image">
+      <img src="Foto.jpg" alt="Jing Wang">
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section">
+<h2>About Me</h2>
+<p class="about">I help businesses transform raw data into meaningful insights and strategic decisions. My expertise spans analytics, dashboards, predictive modelling, and building scalable data solutions.</p>
+</section>
+
+<section id="services" class="section services">
+<h2>Services</h2>
+<div class="grid">
+<a href="data-analysis.html" class="card"><h3>Data Analysis & Business Insights</h3><p>Exploratory data analysis, KPI tracking, and performance analytics to support data-driven decisions.</p></a>
+<a href="data-visualization.html" class="card"><h3>Dashboard & Data Visualization</h3><p>Interactive dashboards and automated reporting with Tableau, Power BI, and Python.</p></a>
+<a href="predictive-analytics.html" class="card"><h3>Predictive Analytics & Forecasting</h3><p>Time-series forecasting, churn prediction, and machine learning models for strategic planning.</p></a>
+<a href="sql-database.html" class="card"><h3>SQL & Database Solutions</h3><p>Advanced SQL queries, database optimization, and scalable data management solutions.</p></a>
+<a href="data-pipeline.html" class="card"><h3>Data Pipeline & API Integration</h3><p>Building ETL pipelines, REST API integrations, and automated workflows for efficient data systems.</p></a>
+<a href="data-strategy.html" class="card"><h3>Data Strategy & Consulting</h3><p>Designing KPI frameworks, analytics roadmaps, and data strategies for long-term growth.</p></a>
+</div>
+</section>
+
+<section id="projects" class="section">
+<h2>My Projects</h2>
+<div class="filter-buttons">
+<button class="btn btn-outline" onclick="filterProjects('all')">All</button>
+<button class="btn btn-outline" onclick="filterProjects('Python')">Python</button>
+<button class="btn btn-outline" onclick="filterProjects('SQL')">SQL</button>
+<button class="btn btn-outline" onclick="filterProjects('Tableau')">Tableau</button>
+<button class="btn btn-outline" onclick="filterProjects('API Integration')">API Integration</button>
+<button class="btn btn-outline" onclick="filterProjects('Analytics Engineering')">Analytics Engineering</button>
+</div>
+<div class="grid projects">
+
+<a href="https://github.com/amandawang90-spec/neuefische-data-analysis-180825-disney_python_project" target="_blank" class="card project" data-category="Python">
+<img src="project1.png" alt="Python Project">
+<div class="overlay"><div>Python Data Analysis Project</div></div>
+</a>
+
+<a href="https://github.com/amandawang90-spec/neuefische-data-analysis-180825-muesli_eda_project" target="_blank" class="card project" data-category="Python">
+<img src="project2.png" alt="EDA Project">
+<div class="overlay"><div>Python EDA Project</div></div>
+</a>
+
+<a href="https://github.com/amandawang90-spec/neuefische-data-analysis-180825-sql_module_and_projects" target="_blank" class="card project" data-category="SQL">
+<img src="project3.png" alt="SQL Projects">
+<div class="overlay"><div>SQL Database & Queries</div></div>
+</a>
+
+<a href="https://github.com/amandawang90-spec/neuefische-data-analysis-180825-tableau_module_and_projects" target="_blank" class="card project" data-category="Tableau">
+<img src="project4.png" alt="Tableau Dashboard Projects">
+<div class="overlay"><div>Tableau Interactive Dashboards</div></div>
+</a>
+
+<a href="https://github.com/amandawang90-spec/neuefische-data-analysis-180825-analytics_engineering_module_and_projects/tree/main" target="_blank" class="card project" data-category="API Integration">
+<img src="project5.jpg" alt="API Integration Project">
+<div class="overlay"><div>API Integration & ETL Project</div></div>
+</a>
+
+<a href="https://github.com/amandawang90-spec/neuefische-data-analysis-180825-analytics_engineering_project" target="_blank" class="card project" data-category="Analytics Engineering">
+<img src="project6.png" alt="Analytics Engineering Project">
+<div class="overlay"><div>Analytics Engineering Project</div></div>
+</a>
+
+</div>
+</section>
+
+<section id="skills" class="section">
+<h2>Skills</h2>
+<div class="skills-container">
+<div class="skill"><div class="skill-name">Python</div><div class="skill-bar"><div class="skill-fill" style="width:90%;">90%</div></div></div>
+<div class="skill"><div class="skill-name">SQL</div><div class="skill-bar"><div class="skill-fill" style="width:85%;">85%</div></div></div>
+<div class="skill"><div class="skill-name">Tableau</div><div class="skill-bar"><div class="skill-fill" style="width:80%;">80%</div></div></div>
+<div class="skill"><div class="skill-name">dbt</div><div class="skill-bar"><div class="skill-fill" style="width:80%;">80%</div></div></div>
+</div>
+</section>
+
+<section id="certifications" class="section certifications">
+<h2>Certifications & Education</h2>
+<p>Data Analytics & AI | Tableau Certified Data Analyst | Certified Business Economist | M.Sc. in Marine Biodiversity and Conservation</p>
+</section>
+
+<section id="contact" class="section contact">
+<h2>Contact Me</h2>
+<form>
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Email" required>
+<textarea placeholder="Your Message" rows="5" required></textarea>
+<button type="submit" class="btn btn-primary">Send Message</button>
+</form>
+<p style="margin-top:20px;">Or email me at <a href="mailto:amanda.wang90@gmail.com">amanda.wang90@gmail.com</a></p>
+</section>
+
+<footer>
+© 2026 Jing Wang. All rights reserved. | 
+<a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a> | 
+<a href="#"><i class="fab fa-github"></i> GitHub</a>
+</footer>
+
+<button class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+function filterProjects(category) {
+const projects = document.querySelectorAll('.project');
+projects.forEach(p => {
+if(category==='all'||p.getAttribute('data-category')===category){p.style.display='block';} else{p.style.display='none';}
+});
+}
+</script>
+
+</body>
+</html>
