@@ -4,5 +4,5 @@
 # VS Code
 .vscode/
 
-# Environment variables (future use)
+# Environment variables (if you ever use them)
 .env
