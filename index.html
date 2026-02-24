@@ -173,11 +173,11 @@ footer a:hover {color:#4338ca;}
 
 <section id="contact" class="section contact">
 <h2>Contact Me</h2>
-<form>
-<input type="text" placeholder="Your Name" required>
-<input type="email" placeholder="Email" required>
-<textarea placeholder="Your Message" rows="5" required></textarea>
-<button type="submit" class="btn btn-primary">Send Message</button>
+<form action="https://formspree.io/f/your-form-id" method="POST">
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="email" name="email" placeholder="Email" required>
+  <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+  <button type="submit" class="btn btn-primary">Send Message</button>
 </form>
 <p style="margin-top:20px;">Or email me at <a href="mailto:amanda.wang90@gmail.com">amanda.wang90@gmail.com</a></p>
 </section>
