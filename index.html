@@ -64,6 +64,68 @@ footer a {margin:0 10px; color:#4f46e5; transition:0.3s;}
 footer a:hover {color:#4338ca;}
 .back-to-top {position:fixed; bottom:20px; right:20px; background:#4f46e5; color:white; border:none; border-radius:50%; padding:12px; cursor:pointer; box-shadow:0 5px 15px rgba(0,0,0,0.2);}
 @media(max-width:768px){.hero-text h1{font-size:36px;} header{flex-direction:column; gap:10px;} .hero-container{flex-direction:column; text-align:center;} .hero-text{text-align:center;}}
+
+/* ── Service flip cards ── */
+.service-card {
+  cursor: default;
+  height: 200px;
+  perspective: 1000px;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  overflow: visible;
+}
+.service-card:hover {
+  transform: none;
+  border: none;
+  box-shadow: none;
+}
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
+}
+.service-card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+}
+.card-front {
+  background: white;
+}
+.card-back {
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  color: white;
+  transform: rotateY(180deg);
+}
+.service-icon {
+  font-size: 36px;
+  color: #4f46e5;
+  margin-bottom: 15px;
+}
+.card-front h3 {
+  font-size: 16px;
+  color: #111827;
+}
+.card-back p {
+  font-size: 15px;
+  line-height: 1.6;
+}
 </style>
 </head>
 <body>
@@ -99,15 +161,83 @@ footer a:hover {color:#4338ca;}
 <p class="about">I help businesses transform raw data into meaningful insights and strategic decisions. My expertise spans analytics, dashboards, predictive modelling, and building scalable data solutions.</p>
 </section>
 
+<!-- Services: flip cards, no links -->
 <section id="services" class="section services">
 <h2>Services</h2>
 <div class="grid">
-<a href="data-analysis.html" class="card"><h3>Data Analysis & Business Insights</h3><p>Exploratory data analysis, KPI tracking, and performance analytics to support data-driven decisions.</p></a>
-<a href="data-visualization.html" class="card"><h3>Dashboard & Data Visualization</h3><p>Interactive dashboards and automated reporting with Tableau, Power BI, and Python.</p></a>
-<a href="predictive-analytics.html" class="card"><h3>Predictive Analytics & Forecasting</h3><p>Time-series forecasting, churn prediction, and machine learning models for strategic planning.</p></a>
-<a href="sql-database.html" class="card"><h3>SQL & Database Solutions</h3><p>Advanced SQL queries, database optimization, and scalable data management solutions.</p></a>
-<a href="data-pipeline.html" class="card"><h3>Data Pipeline & API Integration</h3><p>Building ETL pipelines, REST API integrations, and automated workflows for efficient data systems.</p></a>
-<a href="data-strategy.html" class="card"><h3>Data Strategy & Consulting</h3><p>Designing KPI frameworks, analytics roadmaps, and data strategies for long-term growth.</p></a>
+
+  <div class="card service-card">
+    <div class="card-inner">
+      <div class="card-front">
+        <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Data Analysis & Business Insights</h3>
+      </div>
+      <div class="card-back">
+        <p>Exploratory data analysis, KPI tracking, and performance analytics to support data-driven decisions.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card service-card">
+    <div class="card-inner">
+      <div class="card-front">
+        <div class="service-icon"><i class="fas fa-chart-bar"></i></div>
+        <h3>Dashboard & Data Visualization</h3>
+      </div>
+      <div class="card-back">
+        <p>Interactive dashboards and automated reporting with Tableau, Power BI, and Python.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card service-card">
+    <div class="card-inner">
+      <div class="card-front">
+        <div class="service-icon"><i class="fas fa-brain"></i></div>
+        <h3>Predictive Analytics & Forecasting</h3>
+      </div>
+      <div class="card-back">
+        <p>Time-series forecasting, churn prediction, and machine learning models for strategic planning.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card service-card">
+    <div class="card-inner">
+      <div class="card-front">
+        <div class="service-icon"><i class="fas fa-database"></i></div>
+        <h3>SQL & Database Solutions</h3>
+      </div>
+      <div class="card-back">
+        <p>Advanced SQL queries, database optimization, and scalable data management solutions.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card service-card">
+    <div class="card-inner">
+      <div class="card-front">
+        <div class="service-icon"><i class="fas fa-cogs"></i></div>
+        <h3>Data Pipeline & API Integration</h3>
+      </div>
+      <div class="card-back">
+        <p>Building ETL pipelines, REST API integrations, and automated workflows for efficient data systems.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card service-card">
+    <div class="card-inner">
+      <div class="card-front">
+        <div class="service-icon"><i class="fas fa-lightbulb"></i></div>
+        <h3>Data Strategy & Consulting</h3>
+      </div>
+      <div class="card-back">
+        <p>Designing KPI frameworks, analytics roadmaps, and data strategies for long-term growth.</p>
+      </div>
+    </div>
+  </div>
+
 </div>
 </section>
 
@@ -183,6 +313,9 @@ footer a:hover {color:#4338ca;}
 <form action="https://formspree.io/f/xjgepnle" method="POST">
   <input type="text" name="name" placeholder="Your Name" required>
   <input type="email" name="email" placeholder="Email" required>
+  <input type="text" name="phone" placeholder="Phone Number (optional)">
+  <input type="text" name="job_title" placeholder="Job Title (optional)">
+  <input type="text" name="company" placeholder="Company (optional)">
   <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
   <button type="submit" class="btn btn-primary">Send Message</button>
 </form>
