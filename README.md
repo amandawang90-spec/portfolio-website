@@ -1,36 +1,28 @@
 # Jing Wang | Data Analyst Portfolio
-
 A personal portfolio website showcasing data analytics projects, skills, and services.
 
 ## 🌐 Live Site
-
 > https://amandawang90-spec.github.io/portfolio-website/
 
 ---
 
 ## 📁 Project Structure
-
 ```
 portfolio/
 ├── index.html        # Main website file
 ├── Foto.jpg          # Profile photo
-├── project1.png      # Disney+ Python project thumbnail
-├── project2.png      # EDA project thumbnail
-├── project3.png      # SQL project thumbnail
-├── project4.png      # Tableau dashboard thumbnail
-├── project5.png      # Analytics Engineering project thumbnail
-└── project6.jpg      # Machine Learning project thumbnail
+└── README.md.        # Readme file          
+
 ```
 
 ---
 
 ## ✨ Features
-
 - **Responsive design** — works on desktop and mobile
 - **Smooth scroll navigation** — sticky header with anchor links
 - **Animated hero section** — fade-in intro with profile image
 - **Flip service cards** — hover to reveal service descriptions
-- **Project filter** — filter projects by category (Python, SQL, Tableau, etc.)
+- **Project filter** — filter projects by category (Python, SQL, dbt, Tableau, HTML/CSS/JS)
 - **Skill progress bars** — animated bars showing proficiency levels
 - **Contact form** — powered by [Formspree](https://formspree.io)
 - **Back-to-top button** — fixed floating button
@@ -38,7 +30,6 @@ portfolio/
 ---
 
 ## 🛠️ Tech Stack
-
 - **HTML5 / CSS3** — structure and styling
 - **JavaScript (vanilla)** — project filtering logic
 - **Google Fonts** — Inter typeface
@@ -48,20 +39,25 @@ portfolio/
 ---
 
 ## 📊 Projects Featured
-
 | Project | Category | Link |
 |---|---|---|
-| Disney+ Python Analysis | Python | [GitHub](https://github.com/amandawang90-spec/neuefische-data-analysis-180825-disney_python_project) |
-| Fulfilment & Delivery EDA | Python | [GitHub](https://github.com/amandawang90-spec/neuefische-data-analysis-180825-muesli_eda_project) |
-| Northwind Sales Analytics | SQL | [GitHub](https://github.com/amandawang90-spec/neuefische-data-analysis-180825-sql_module_and_projects) |
-| Tableau Interactive Dashboards | Tableau | [GitHub](https://github.com/amandawang90-spec/neuefische-data-analysis-180825-tableau_module_and_projects) |
-| Analytics Engineering Project | Analytics Engineering | [GitHub](https://github.com/amandawang90-spec/neuefische-data-analysis-180825-analytics_engineering_project) |
-| Auto MPG Prediction | Machine Learning | [GitHub](https://github.com/amandawang90-spec/neuefische-data-analysis-180825-advanced_analytics_module_and_projects) |
+| Retail Growth Engine | SQL | [GitHub](https://github.com/amandawang90-spec/retail-growth-engine-sql-analytics) |
+| Northwind Sales Analytics | SQL | [GitHub](https://github.com/amandawang90-spec/neuefische-data-analysis-180825-sql_module_and_projects/tree/main/Northwind-sales-analytics) |
+| Disney+ Content Analysis | Python | [GitHub](https://github.com/amandawang90-spec/neuefische-data-analysis-180825-disney_python_project/tree/main/disney_plus_analysis) |
+| Müsli Fulfilment & Delivery | Python | [GitHub](https://github.com/amandawang90-spec/neuefische-data-analysis-180825-muesli_eda_project/tree/main/fulfillment_and_delivery_process_analysis) |
+| Car Fuel Efficiency Prediction | Python / ML | [GitHub](https://github.com/amandawang90-spec/neuefische-data-analysis-180825-advanced_analytics_module_and_projects/tree/main/auto_mpg_prediction_project) |
+| Flight & Weather Analytics — Hurricane Harvey | dbt / Python | [GitHub](https://github.com/amandawang90-spec/neuefische-data-analysis-180825-analytics_engineering_project) |
+| Olist Smart Insight | SQL / Python / Tableau | [GitHub](https://github.com/amandawang90-spec/neuefische-data-analysis-180825-capstone_project) |
+| Flights Analysis — Hurricane Michael | Tableau | [Tableau Public](https://public.tableau.com/app/profile/jing.wang8227/viz/FlightsAnalysisofMichaelHurricane/Impactofhurricanemichaelonflights) |
+| Generational Employment Patterns | Tableau | [Tableau Public](https://public.tableau.com/app/profile/jing.wang8227/viz/GenerationalEmploymentPatternsintheUnitedStatesBabyBoomersvs_Millennials20072013/GenerationalEmploymentPatternsintheUnitedStatesBabyBoomersvs_Millennials20072013) |
+| Tour de France Winner Performance | Tableau | [Tableau Public](https://public.tableau.com/app/profile/jing.wang8227/viz/TourdeFranceWinnerPerformanceDashboard/DashboardTourdeFrance) |
+| Superstore Order Analysis | Tableau | [Tableau Public](https://public.tableau.com/app/profile/jing.wang8227/viz/SuperstoreOrderAnalysisDashboard_17712563415670/TableauSuperstoreOrderAnalysis) |
+| CCFB Volunteer Scheduler | HTML/CSS/JS | [Live Site](https://ccfb-bremen.netlify.app) |
+| Bloom & Petal E-Commerce Shop | HTML/CSS/JS | [Live Site](https://bloom-and-petal.netlify.app) |
 
 ---
 
 ## 🚀 Getting Started
-
 No build tools required. Just open `index.html` in your browser:
 
 ```bash
@@ -76,7 +72,6 @@ open index.html
 ```
 
 Or deploy directly to **GitHub Pages**:
-
 1. Push this repository to GitHub
 2. Go to **Settings → Pages**
 3. Set source to `main` branch, `/ (root)`
@@ -85,7 +80,6 @@ Or deploy directly to **GitHub Pages**:
 ---
 
 ## 📬 Contact
-
 - **Email:** [amanda.wang90@gmail.com](mailto:amanda.wang90@gmail.com)
 - **LinkedIn:** [linkedin.com/in/jing-wang-57419a261](https://www.linkedin.com/in/jing-wang-57419a261/)
 - **GitHub:** [github.com/amandawang90-spec](https://github.com/amandawang90-spec)

@@ -40,9 +40,19 @@ nav a:hover {color:#4f46e5;}
 .card {background:white; padding:30px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.05);
   transition: transform 0.3s, box-shadow 0.3s, border 0.3s; position:relative; overflow:hidden; text-decoration:none; color:inherit;}
 .card:hover {transform:translateY(-5px) scale(1.03); box-shadow:0 15px 30px rgba(0,0,0,0.1); border:2px solid #4f46e5;}
-.card img {width:100%; border-radius:15px; display:block;}
-.overlay {position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(17,24,39,0.8);
-  color:white; display:flex; align-items:center; justify-content:center; text-align:center; opacity:0; transition:opacity 0.3s ease; border-radius:20px; padding:20px;}
+.card.project img {display:none;}
+.card.project {padding:14px; min-height:80px; display:flex; flex-direction:column; align-items:center; justify-content:center;}
+.card-title {
+  font-size:14px;
+  font-weight:700;
+  color:#111827;
+  text-align:center;
+  line-height:1.4;
+  margin-bottom: auto;
+}
+.overlay {position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(79,70,229,0.92);
+  color:white; display:flex; align-items:center; justify-content:center; text-align:center; opacity:0; transition:opacity 0.3s ease; border-radius:20px; padding:20px; overflow-y:auto;}
+.overlay > div { font-size:13px; line-height:1.5; width:100%; }
 .card:hover .overlay {opacity:1;}
 .about {text-align:center; max-width:700px; margin:auto; color:#374151;}
 .contact {text-align:center;}
@@ -125,6 +135,60 @@ footer a:hover {color:#4338ca;}
 .card-back p {
   font-size: 15px;
   line-height: 1.6;
+}
+.tool-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.25);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin: 2px 3px;
+  border: 1px solid rgba(255,255,255,0.5);
+}
+.filter-btn.active {
+  background: #4f46e5 !important;
+  color: white !important;
+}
+.project.hidden {
+  display: none;
+}
+.project.highlighted {
+  outline: 3px solid #4f46e5;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(79,70,229,0.15);
+}
+.project-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+.project-pill {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 20px;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s;
+}
+.project-pill:hover {
+  background: #ede9fe;
+  color: #4f46e5;
+  border-color: #c4b5fd;
+}
+.project-pill.active-pill {
+  background: #ede9fe;
+  color: #4f46e5;
+  border-color: #4f46e5;
+  font-weight: 600;
 }
 </style>
 </head>
@@ -243,57 +307,125 @@ footer a:hover {color:#4338ca;}
 
 <section id="projects" class="section">
 <h2>My Projects</h2>
-<div class="filter-buttons">
-<button class="btn btn-outline" onclick="filterProjects('all')">All</button>
-<button class="btn btn-outline" onclick="filterProjects('Python')">Python</button>
-<button class="btn btn-outline" onclick="filterProjects('SQL')">SQL</button>
-<button class="btn btn-outline" onclick="filterProjects('Tableau')">Tableau</button>
-<button class="btn btn-outline" onclick="filterProjects('Analytics Engineering')">Analytics Engineering</button>
-<button class="btn btn-outline" onclick="filterProjects('Machine Learning')">Machine Learning</button>
-<button class="btn btn-outline" onclick="filterProjects('Web Apps')">Web Apps</button>
+
+<!-- Tool filter buttons -->
+<div class="filter-buttons" id="tool-filters">
+  <button class="btn btn-primary filter-btn active" data-tool="all" onclick="setToolFilter(this, 'all')">All</button>
+  <button class="btn btn-outline filter-btn" data-tool="Python" onclick="setToolFilter(this, 'Python')">Python</button>
+  <button class="btn btn-outline filter-btn" data-tool="SQL" onclick="setToolFilter(this, 'SQL')">SQL</button>
+  <button class="btn btn-outline filter-btn" data-tool="dbt" onclick="setToolFilter(this, 'dbt')">dbt</button>
+  <button class="btn btn-outline filter-btn" data-tool="Tableau" onclick="setToolFilter(this, 'Tableau')">Tableau</button>
+  <button class="btn btn-outline filter-btn" data-tool="Web" onclick="setToolFilter(this, 'Web')">HTML/CSS/JS</button>
 </div>
+
+<!-- No results message -->
+<p id="no-results" style="display:none; text-align:center; color:#6b7280; font-style:italic; margin-bottom:20px;">No projects match the selected filter.</p>
+
 <div class="grid projects">
 
-<a href="https://github.com/amandawang90-spec/neuefische-data-analysis-180825-disney_python_project/tree/main/disney_plus_analysis" target="_blank" class="card project" data-category="Python">
-<img src="project1.png" alt="Python Project">
-<div class="overlay"><div>Python Data Analysis Project</div></div>
-</a>
+  <a href="https://github.com/amandawang90-spec/retail-growth-engine-sql-analytics" target="_blank" class="card project" data-project="retail-sql" data-tools="SQL">
+    <div class="card-title">Retail Growth Engine</div>
+    <div class="overlay"><div>
+SQL Analytics for retail performance & growth insights
+      <div style="margin-top:8px;"><span class="tool-tag">SQL</span></div>
+    </div></div>
+  </a>
 
-<a href="https://github.com/amandawang90-spec/neuefische-data-analysis-180825-muesli_eda_project/tree/main/fulfillment_and_delivery_process_analysis" target="_blank" class="card project" data-category="Python">
-<img src="project2.png" alt="EDA Project">
-<div class="overlay"><div>Python EDA Project</div></div>
-</a>
+  <a href="https://github.com/amandawang90-spec/neuefische-data-analysis-180825-sql_module_and_projects/tree/main/Northwind-sales-analytics" target="_blank" class="card project" data-project="northwind" data-tools="SQL">
+    <div class="card-title">Northwind Sales Analytics</div>
+    <div class="overlay"><div>
+Sales database analysis & SQL queries
+      <div style="margin-top:8px;"><span class="tool-tag">SQL</span></div>
+    </div></div>
+  </a>
 
-<a href="https://github.com/amandawang90-spec/neuefische-data-analysis-180825-sql_module_and_projects/tree/main/Northwind-sales-analytics" target="_blank" class="card project" data-category="SQL">
-<img src="project3.png" alt="SQL Projects">
-<div class="overlay"><div>SQL Database & Queries</div></div>
-</a>
+  <a href="https://github.com/amandawang90-spec/neuefische-data-analysis-180825-disney_python_project/tree/main/disney_plus_analysis" target="_blank" class="card project" data-project="disney" data-tools="Python">
+    <div class="card-title">Disney+ Content Analysis</div>
+    <div class="overlay"><div>
+Exploratory analysis of streaming content library
+      <div style="margin-top:8px;"><span class="tool-tag">Python</span></div>
+    </div></div>
+  </a>
 
-<a href="https://github.com/amandawang90-spec/neuefische-data-analysis-180825-tableau_module_and_projects/blob/main/Tableau_Projects/Dashboards_presentation.md" target="_blank" class="card project" data-category="Tableau">
-<img src="project4.png" alt="Tableau Dashboard Projects">
-<div class="overlay"><div>Tableau Interactive Dashboards</div></div>
-</a>
+  <a href="https://github.com/amandawang90-spec/neuefische-data-analysis-180825-muesli_eda_project/tree/main/fulfillment_and_delivery_process_analysis" target="_blank" class="card project" data-project="muesli" data-tools="Python">
+    <div class="card-title">Müsli Fulfilment & Delivery</div>
+    <div class="overlay"><div>
+EDA of fulfilment and delivery process
+      <div style="margin-top:8px;"><span class="tool-tag">Python</span></div>
+    </div></div>
+  </a>
 
+  <a href="https://github.com/amandawang90-spec/neuefische-data-analysis-180825-advanced_analytics_module_and_projects/tree/main/auto_mpg_prediction_project" target="_blank" class="card project" data-project="mpg" data-tools="Python">
+    <div class="card-title">Car Fuel Efficiency Prediction</div>
+    <div class="overlay"><div>
+ML regression model for MPG prediction
+      <div style="margin-top:8px;"><span class="tool-tag">Python</span></div>
+    </div></div>
+  </a>
 
-<a href="https://github.com/amandawang90-spec/neuefische-data-analysis-180825-analytics_engineering_project" target="_blank" class="card project" data-category="Analytics Engineering">
-<img src="project5.png" alt="Analytics Engineering Project">
-<div class="overlay"><div>Analytics Engineering Project</div></div>
-</a>
+  <a href="https://github.com/amandawang90-spec/neuefische-data-analysis-180825-analytics_engineering_project" target="_blank" class="card project" data-project="hurricane-dbt" data-tools="dbt Python">
+    <div class="card-title">Flight & Weather Analytics — Hurricane Harvey</div>
+    <div class="overlay"><div>
+Analytics engineering pipeline for flight & weather data
+      <div style="margin-top:8px;"><span class="tool-tag">dbt</span><span class="tool-tag">Python</span></div>
+    </div></div>
+  </a>
 
-<a href="https://github.com/amandawang90-spec/neuefische-data-analysis-180825-advanced_analytics_module_and_projects/tree/main/auto_mpg_prediction_project" target="_blank" class="card project" data-category="Machine Learning">
-<img src="project6.jpg" alt="Machine Learning Project">
-<div class="overlay"><div>Machine Learning Project</div></div>
-</a>
+  <a href="https://github.com/amandawang90-spec/neuefische-data-analysis-180825-capstone_project" target="_blank" class="card project" data-project="olist" data-tools="SQL Python Tableau">
+    <div class="card-title">Olist Smart Insight</div>
+    <div class="overlay"><div>
+End-to-end e-commerce analytics with dashboards
+      <div style="margin-top:8px;"><span class="tool-tag">SQL</span><span class="tool-tag">Python</span><span class="tool-tag">Tableau</span></div>
+    </div></div>
+  </a>
 
-<a href="https://ccfb-bremen.netlify.app" target="_blank" class="card project" data-category="Web Apps">
-<img src="project_ccfb.png" alt="CCFB Volunteer Scheduler">
-<div class="overlay"><div>Church Volunteer Scheduler — Full-stack web app with Supabase, multi-language support & auto-scheduling</div></div>
-</a>
+  <a href="https://public.tableau.com/app/profile/jing.wang8227/viz/FlightsAnalysisofMichaelHurricane/Impactofhurricanemichaelonflights" target="_blank" class="card project" data-project="michael" data-tools="Tableau">
+    <div class="card-title">Flights & Weather Analysis — Hurricane Michael</div>
+    <div class="overlay"><div>
+Tableau dashboard of flight disruptions during the hurricane
+      <div style="margin-top:8px;"><span class="tool-tag">Tableau</span></div>
+    </div></div>
+  </a>
 
-<a href="https://bloom-and-petal.netlify.app" target="_blank" class="card project" data-category="Web Apps">
-<img src="project_bloom.png" alt="Bloom & Petal Jewelry Shop">
-<div class="overlay"><div>Bloom & Petal — Handmade jewelry e-commerce shop with cart, loyalty points & multilingual support</div></div>
-</a>
+  <a href="https://public.tableau.com/app/profile/jing.wang8227/viz/GenerationalEmploymentPatternsintheUnitedStatesBabyBoomersvs_Millennials20072013/GenerationalEmploymentPatternsintheUnitedStatesBabyBoomersvs_Millennials20072013" target="_blank" class="card project" data-project="employment" data-tools="Tableau">
+    <div class="card-title">Generational Employment Patterns</div>
+    <div class="overlay"><div>
+Baby Boomers vs. Millennials in the US (2007–2013)
+      <div style="margin-top:8px;"><span class="tool-tag">Tableau</span></div>
+    </div></div>
+  </a>
+
+  <a href="https://public.tableau.com/app/profile/jing.wang8227/viz/TourdeFranceWinnerPerformanceDashboard/DashboardTourdeFrance" target="_blank" class="card project" data-project="tdf" data-tools="Tableau">
+    <div class="card-title">Tour de France Winner Performance</div>
+    <div class="overlay"><div>
+Historical performance trends of TdF winners
+      <div style="margin-top:8px;"><span class="tool-tag">Tableau</span></div>
+    </div></div>
+  </a>
+
+  <a href="https://public.tableau.com/app/profile/jing.wang8227/viz/SuperstoreOrderAnalysisDashboard_17712563415670/TableauSuperstoreOrderAnalysis" target="_blank" class="card project" data-project="superstore" data-tools="Tableau">
+    <div class="card-title">Superstore Order Analysis</div>
+    <div class="overlay"><div>
+Sales, profit & shipping analysis dashboard
+      <div style="margin-top:8px;"><span class="tool-tag">Tableau</span></div>
+    </div></div>
+  </a>
+
+  <a href="https://ccfb-bremen.netlify.app" target="_blank" class="card project" data-project="ccfb" data-tools="Web">
+    <div class="card-title">CCFB Volunteer Scheduler</div>
+    <div class="overlay"><div>
+Full-stack web app with auto-scheduling & multi-language support
+      <div style="margin-top:8px;"><span class="tool-tag">HTML</span><span class="tool-tag">CSS</span><span class="tool-tag">JS</span></div>
+    </div></div>
+  </a>
+
+  <a href="https://bloom-and-petal.netlify.app" target="_blank" class="card project" data-project="bloom" data-tools="Web">
+    <div class="card-title">Bloom & Petal E-Commerce Shop</div>
+    <div class="overlay"><div>
+Handmade jewellery e-commerce with cart & loyalty points
+      <div style="margin-top:8px;"><span class="tool-tag">HTML</span><span class="tool-tag">CSS</span><span class="tool-tag">JS</span></div>
+    </div></div>
+  </a>
 
 </div>
 </section>
@@ -337,4 +469,90 @@ footer a:hover {color:#4338ca;}
 <button class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+let activeTool = 'all';
+
+function setToolFilter(btn, tool) {
+  activeTool = tool;
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.remove('active', 'btn-primary');
+    b.classList.add('btn-outline');
+  });
+  btn.classList.add('active', 'btn-primary');
+  btn.classList.remove('btn-outline');
+  clearPillHighlight();
+  applyFilters();
+}
+
+function jumpToProject(projectId) {
+  // Clear previous highlight
+  document.querySelectorAll('.project').forEach(p => p.classList.remove('highlighted'));
+  document.querySelectorAll('.project-pill').forEach(p => p.classList.remove('active-pill'));
+
+  const target = document.querySelector(`.project[data-project="${projectId}"]`);
+  const pill = document.querySelector(`.project-pill[onclick="jumpToProject('${projectId}')"]`);
+
+  if (target) {
+    // If target is hidden by tool filter, temporarily show all to allow scroll
+    const wasHidden = target.classList.contains('hidden');
+    if (wasHidden) {
+      // Reset tool filter to all so user can see the project
+      activeTool = 'all';
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.remove('active', 'btn-primary');
+        b.classList.add('btn-outline');
+      });
+      document.querySelector('.filter-btn[data-tool="all"]').classList.add('active', 'btn-primary');
+      document.querySelector('.filter-btn[data-tool="all"]').classList.remove('btn-outline');
+      applyFilters();
+    }
+    target.classList.add('highlighted');
+    if (pill) pill.classList.add('active-pill');
+    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'center' }), 50);
+    // Remove highlight after a moment
+    setTimeout(() => {
+      target.classList.remove('highlighted');
+      if (pill) pill.classList.remove('active-pill');
+    }, 2500);
+  }
+}
+
+function clearPillHighlight() {
+  document.querySelectorAll('.project-pill').forEach(p => p.classList.remove('active-pill'));
+  document.querySelectorAll('.project').forEach(p => p.classList.remove('highlighted'));
+}
+
+function applyFilters() {
+  const projects = document.querySelectorAll('.project');
+  let visibleCount = 0;
+  projects.forEach(p => {
+    const tools = (p.dataset.tools || '').split(' ');
+    const toolMatch = activeTool === 'all' || tools.includes(activeTool);
+    if (toolMatch) {
+      p.classList.remove('hidden');
+      visibleCount++;
+    } else {
+      p.classList.add('hidden');
+    }
+  });
+  document.getElementById('no-results').style.display = visibleCount === 0 ? 'block' : 'none';
+}
+
+// Animate skill bars on scroll
+const skillFills = document.querySelectorAll('.skill-fill');
+const skillObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      el.style.width = el.getAttribute('data-width') || el.style.width;
+    }
+  });
+}, { threshold: 0.3 });
+skillFills.forEach(el => {
+  el.setAttribute('data-width', el.style.width);
+  el.style.width = '0';
+  skillObserver.observe(el);
+});
+</script>
+</body>
+</html>
 function filterProj
